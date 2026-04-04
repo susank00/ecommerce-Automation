@@ -23,3 +23,18 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+const LoginPage = require("../pages/Login");
+
+const loginPage = new LoginPage();
+
+Cypress.Commands.add("login", () => {
+  cy.fixture("credentials").then((credentials) => {
+    loginPage.visit();
+    loginPage.login(
+      credentials.validUser.email,
+      credentials.validUser.password,
+    );
+    loginPage.assertLoginSuccess();
+  });
+});
