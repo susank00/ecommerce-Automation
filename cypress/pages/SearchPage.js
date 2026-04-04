@@ -11,8 +11,8 @@ class SearchPage extends BasePage {
   get searchResults() {
     return ".product-thumb";
   }
-  get firstProduct() {
-    return ".product-thumb:first h4 a";
+  get secondProduct() {
+    return ".product-thumb:nth-child(2) h4 a";
   }
   get noResultsMsg() {
     return "#content p";
@@ -36,11 +36,13 @@ class SearchPage extends BasePage {
   clickFirstProduct() {
     this.click(this.firstProduct);
   }
-
+  clickSecondProduct() {
+    cy.get(".product-thumb h4 a").eq(1).should("be.visible").click();
+  }
   // ── Assertions ─────────────────────────────────────────────
 
   assertResultsPageLoaded() {
-    cy.url().should("include", "route=product/search");
+    cy.url().should("include", "route=product%2Fsearch&search=iPod+Shuffle");
   }
 
   assertResultsVisible() {

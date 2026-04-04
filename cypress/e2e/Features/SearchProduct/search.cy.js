@@ -30,7 +30,7 @@ describe("Search Product Flow", () => {
 
   // ── Negative Test ─────────────────────────────────────────
 
-  it.only("should show no results for invalid search term", () => {
+  it("should show no results for invalid search term", () => {
     searchPage.search("xyzxyzxyz123notaproduct");
 
     cy.url().should(
