@@ -1,0 +1,39 @@
+# Node modules
+node_modules/
+
+# Cypress artifacts
+cypress/videos/
+cypress/screenshots/
+cypress/downloads/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+.env.*
+
+# Cypress cache
+.cypress/
+
+# IDE files
+.vscode/
+.idea/
+
+# Test reports (if you add later)
+allure-results/
+allure-report/
+mochawesome-report/
+
+# Coverage (if used)
+coverage/
+
+# Temporary files
+*.tmp
+*.log
