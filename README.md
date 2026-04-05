@@ -31,7 +31,7 @@ npm -v
 Clone the repository and install dependencies:
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/susank00/ecommerce-Automation.git
 cd ecommerce-automation
 npm install
 ```
