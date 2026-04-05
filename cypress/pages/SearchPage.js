@@ -1,7 +1,7 @@
 const BasePage = require("./BasePage");
 
 class SearchPage extends BasePage {
-  // ── Selectors ──────────────────────────────────────────────
+  // ── Selectors
   get searchInput() {
     return '#entry_217822 > div input[placeholder="Search For Products"]';
   }
@@ -18,7 +18,7 @@ class SearchPage extends BasePage {
     return "#content p";
   }
 
-  // ── Actions ────────────────────────────────────────────────
+  // ── Actions
 
   enterSearchTerm(term) {
     this.type(this.searchInput, term);
@@ -39,7 +39,7 @@ class SearchPage extends BasePage {
   clickSecondProduct() {
     cy.get(".product-thumb h4 a").eq(1).should("be.visible").click();
   }
-  // ── Assertions ─────────────────────────────────────────────
+  // ── Assertions
 
   assertResultsPageLoaded() {
     cy.url().should("include", "route=product%2Fsearch&search=iPod+Shuffle");

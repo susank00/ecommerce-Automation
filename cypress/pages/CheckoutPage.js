@@ -1,7 +1,7 @@
 const BasePage = require("./BasePage");
 
 class CheckoutPage extends BasePage {
-  // ── Selectors ──────────────────────────────────────────────
+  // ── Selectors
   get checkoutHeading() {
     return "#checkout-checkout h1";
   }
@@ -14,11 +14,11 @@ class CheckoutPage extends BasePage {
   get confirmOrderBtn() {
     return "#button-confirm";
   }
-  get continueforward() {
+  get continueForwardBtn() {
     return "#button-save";
   }
 
-  // ── Address form selectors ──────────────────────────────────
+  // ── Address form selectors
   get firstNameField() {
     return "#input-payment-firstname";
   }
@@ -41,33 +41,40 @@ class CheckoutPage extends BasePage {
     return "#input-payment-zone";
   }
 
-  // ── Actions ────────────────────────────────────────────────
+  // Actions
 
   /**
-   * Continue through billing address step
-   * Always selects New Address to ensure consistent flow every run
+   * Fill billing address form with provided data
    */
-  continueBillingAddress() {
+  fillBillingAddress(data) {
+    cy.get(this.firstNameField).scrollIntoView().type(data.firstName);
+    cy.get(this.lastNameField).scrollIntoView().type(data.lastName);
+    cy.get(this.address1Field).scrollIntoView().type(data.address1);
+    cy.get(this.cityField).scrollIntoView().type(data.city);
+    cy.get(this.postcodeField).scrollIntoView().type(data.postcode);
+    cy.get(this.countryDropdown).scrollIntoView().select(data.country);
+    cy.get(this.zoneDropdown).scrollIntoView().select(data.zone);
+  }
+
+  /**
+   * Continue through billing address step.
+   * Selects New Address if the option exists, fills the form, then accepts terms.
+   */
+  continueBillingAddress(data) {
     cy.contains("h4", "Billing Address").should("be.visible");
 
-    // Always click New Address if option exists — ensures consistent flow
-    // Always click New Address if option exists — ensures consistent flow
     cy.get("body").then(($body) => {
       if ($body.find("#input-payment-address-new").length > 0) {
         cy.get("#input-payment-address-new").click({ force: true });
       }
     });
 
-    // Fill form if fields are visible
+    // wait for form to animate/render before interacting
+    cy.get(this.firstNameField).should("be.visible");
+
     cy.get("body").then(($body) => {
       if ($body.find(this.firstNameField).length > 0) {
-        this.type(this.firstNameField, "Susan");
-        this.type(this.lastNameField, "Khatri");
-        this.type(this.address1Field, "123 Test Street");
-        this.type(this.cityField, "Kathmandu");
-        this.type(this.postcodeField, "44600");
-        cy.get(this.countryDropdown).select("Nepal");
-        cy.get(this.zoneDropdown).select("Bagmati");
+        this.fillBillingAddress(data);
       }
       this.click(this.termsLabel);
     });
@@ -76,29 +83,23 @@ class CheckoutPage extends BasePage {
   /**
    * Click continue/save button to proceed
    */
-  Continueforward() {
-    this.click(this.continueforward);
+  continueForward() {
+    this.click(this.continueForwardBtn);
   }
 
   /**
-   * Click I agree to terms
+   * Accept terms and conditions
    */
   continuePaymentMethod() {
     cy.contains("label", "I have read and agree to the").click({ force: true });
   }
 
-  // ── Assertions ─────────────────────────────────────────────
+  // Assertions
 
-  /**
-   * Assert we are on checkout page
-   */
   assertOnCheckoutPage() {
     cy.url().should("include", "route=checkout/checkout");
   }
 
-  /**
-   * Assert we have reached the payment/confirm order page
-   */
   assertOnPaymentPage() {
     cy.contains("h1", "Confirm Order").should("be.visible");
   }

@@ -8,7 +8,7 @@ describe("Search Product Flow", () => {
     cy.visit("/");
   });
 
-  // ── Positive Tests ────────────────────────────────────────
+  // ── Positive Tests
 
   it("should search for a product and show results", () => {
     searchPage.search("iPhone");
@@ -28,7 +28,7 @@ describe("Search Product Flow", () => {
     );
   });
 
-  // ── Negative Test ─────────────────────────────────────────
+  //Negative Test
 
   it("should show no results for invalid search term", () => {
     searchPage.search("xyzxyzxyz123notaproduct");

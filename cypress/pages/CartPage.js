@@ -1,7 +1,7 @@
 const BasePage = require("./BasePage");
 
 class CartPage extends BasePage {
-  // ── Selectors ──────────────────────────────────────────────
+  // Selectors
   get addToCartBtn() {
     return '#entry_216842 button[title="Add to Cart"]';
   }
@@ -24,7 +24,7 @@ class CartPage extends BasePage {
     return "#notification-box-top .toast-body";
   }
 
-  // ── Actions ────────────────────────────────────────────────
+  // ── Actions
 
   /**
    * Click Add to Cart on product page
@@ -59,7 +59,7 @@ class CartPage extends BasePage {
     this.click(this.checkoutBtn);
   }
 
-  // ── Assertions ─────────────────────────────────────────────
+  // ── Assertions
 
   /**
    * Assert success message after adding to cart

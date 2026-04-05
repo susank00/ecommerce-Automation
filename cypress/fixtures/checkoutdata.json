@@ -1,0 +1,11 @@
+{
+  "billing": {
+    "firstName": "Susan",
+    "lastName": "Khatri",
+    "address1": "123 Test Street",
+    "city": "Kathmandu",
+    "postcode": "44600",
+    "country": "Nepal",
+    "zone": "Bagmati"
+  }
+}
