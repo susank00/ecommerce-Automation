@@ -1,7 +1,7 @@
 import BasePage from "./BasePage.js";
 
 class LoginPage extends BasePage {
-  // ── Selectors ──────────────────────────────────────────────
+  // ── Selectors
   get emailInput() {
     return "#input-email";
   }
@@ -18,7 +18,7 @@ class LoginPage extends BasePage {
     return ".alert-danger";
   }
 
-  // ── Actions ────────────────────────────────────────────────
+  // ── Actions
 
   /**
    * Navigate directly to the login page
@@ -57,7 +57,7 @@ class LoginPage extends BasePage {
     this.clickLoginButton();
   }
 
-  // ── Assertions ─────────────────────────────────────────────
+  // ── Assertions
 
   /**
    * Assert we are on the login page
